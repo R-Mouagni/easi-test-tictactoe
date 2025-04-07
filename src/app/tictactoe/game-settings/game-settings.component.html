@@ -1,0 +1,85 @@
+<div class="max-w-md mx-auto bg-white shadow-lg rounded-xl p-6 space-y-6">
+  <h2 class="text-2xl font-bold text-center text-gray-800">Nouvelle partie</h2>
+
+  <form (ngSubmit)="onStart()" [formGroup]="gameSettingsForm" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1" for="gridSize">Taille de la grille</label>
+      <input type="text"
+             id="gridSize"
+             formControlName="gridSize"
+             [ngClass]="{
+           'border-red-500 placeholder-red-500': gameSettingsForm.get('gridSize')?.invalid && (gameSettingsForm.get('gridSize')?.touched || gameSettingsForm.get('gridSize')?.dirty),
+           'border-gray-300': !(gameSettingsForm.get('gridSize')?.invalid && (gameSettingsForm.get('gridSize')?.touched || gameSettingsForm.get('gridSize')?.dirty))
+         }"
+             class="w-full rounded-md border shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+             placeholder="Ex: 3 pour une grille 3x3"/>
+
+      @if (gameSettingsForm.get('gridSize')?.errors && (gameSettingsForm.get('gridSize')?.touched || gameSettingsForm.get('gridSize')?.dirty)) {
+        <div class="mt-1 text-sm text-red-600">
+          {{ errorMessage('gridSize') }}
+        </div>
+      }
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="symbol1">Symbole du joueur 1</label>
+        <input type="text"
+               id="symbol1"
+               formControlName="symbol1"
+               [ngClass]="{
+           'border-red-500 placeholder-red-500': gameSettingsForm.get('symbol1')?.invalid && (gameSettingsForm.get('symbol1')?.touched || gameSettingsForm.get('symbol1')?.dirty),
+           'border-gray-300': !(gameSettingsForm.get('symbol1')?.invalid && (gameSettingsForm.get('symbol1')?.touched || gameSettingsForm.get('symbol1')?.dirty))
+         }"
+               class="w-full rounded-md border shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+               placeholder="Ex: X"/>
+        @if (gameSettingsForm.get('symbol1')?.errors && (gameSettingsForm.get('symbol1')?.touched || gameSettingsForm.get('symbol1')?.dirty)) {
+          <div class="mt-1 text-sm text-red-600">
+            {{ errorMessage('symbol1') }}
+          </div>
+        }
+
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="symbol2">Symbole du joueur 2</label>
+        <input type="text"
+               id="symbol2"
+               formControlName="symbol2"
+               [ngClass]="{
+           'border-red-500 placeholder-red-500': gameSettingsForm.get('symbol2')?.invalid && (gameSettingsForm.get('symbol2')?.touched || gameSettingsForm.get('symbol2')?.dirty),
+           'border-gray-300': !(gameSettingsForm.get('symbol2')?.invalid && (gameSettingsForm.get('symbol2')?.touched || gameSettingsForm.get('symbol2')?.dirty))
+         }"
+               class="w-full rounded-md border shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+               placeholder="Ex: O"/>
+        @if (gameSettingsForm.get('symbol2')?.errors && (gameSettingsForm.get('symbol2')?.touched || gameSettingsForm.get('symbol2')?.dirty)) {
+          <div class="mt-1 text-sm text-red-600">
+            {{ errorMessage('symbol2') }}
+          </div>
+        }
+      </div>
+    </div>
+
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Mode de jeu</label>
+      <div class="flex space-x-4">
+        <label class="inline-flex items-center">
+          <input type="radio" formControlName="mode" value="1p" class="text-blue-500 focus:ring-blue-500"/>
+          <span class="ml-2 text-gray-700">Contre l'ordinateur</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="radio" formControlName="mode" value="2p" class="text-blue-500 focus:ring-blue-500"/>
+          <span class="ml-2 text-gray-700">À deux joueurs</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit"
+              [disabled]="gameSettingsForm.invalid"
+              class="rounded-md bg-blue-500 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-100 shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer">
+        Démarrer
+      </button>
+    </div>
+  </form>
+</div>

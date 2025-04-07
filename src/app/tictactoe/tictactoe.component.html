@@ -1,0 +1,39 @@
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8">
+  <h1 class="text-5xl font-extrabold text-gray-800 dark:text-white mb-8 drop-shadow">Tic Tac Toe</h1>
+
+  @if (!isGameStarted) {
+    <app-game-settings (start)="startGame($event)"></app-game-settings>
+  } @else {
+
+    <button
+      class="absolute top-4 left-4 bg-white/80 dark:bg-gray-700 text-black dark:text-white font-medium py-2 px-4 rounded-lg shadow transition hover:scale-105 hover:bg-white dark:hover:bg-gray-600 cursor-pointer"
+      (click)="backToMenu()"
+    >
+      🔙 Menu
+    </button>
+
+    <app-board [board]="gameService.board" (cellClicked)="onCellClicked($event)"></app-board>
+
+    <div class="mt-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+      Joueur actuel : <span class="text-indigo-600 dark:text-indigo-400">{{ gameService.currentPlayer }}</span>
+    </div>
+
+    @if (gameService.gameOver) {
+      <div
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center z-50 animate-fade-zoom text-white text-center px-4">
+        <h2 class="text-5xl font-extrabold mb-4 drop-shadow-lg">
+          {{ gameService.gameStatus }}
+        </h2>
+        <button
+          class="mt-6 bg-white text-black font-semibold py-2 px-6 rounded-lg shadow-lg transition-transform duration-200 hover:scale-105"
+          (click)="backToMenu()"
+        >
+          🔁 Rejouer
+        </button>
+      </div>
+    }
+
+
+  }
+</div>
