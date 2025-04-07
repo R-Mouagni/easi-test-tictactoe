@@ -3,11 +3,11 @@
 ## To run the app
 1. Clone the repository:
 ```bash
-git clone https://github.com/R-Mouagni/easi-test-tictactoe.git
+git clone https://github.com/R-Mouagni/tictactoe
 ```
 2. Navigate to the project directory:
 ```bash
-cd Tictactoe
+cd tictactoe
 ```
 3. Install the dependencies:
 ```bash
